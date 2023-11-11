@@ -5,13 +5,20 @@ import { Grid } from "@radix-ui/themes";
 
 const DashboardView = () => {
   return (
-    <Grid columns={{ xs: "1", md: "2" }} rows="2" gap="9" className="p-5">
-      <div className="">
-        <IssueStatistics />
-        <IssueBarChart />
-      </div>
-      <LatestIssues />
-    </Grid>
+    <div className="md:max-h-screen">
+      <Grid
+        columns={{ xs: "1", md: "2" }}
+        rows="2"
+        gap={{ xs: "0", md: "9" }}
+        className="md:max-h-screen p-5"
+      >
+        <div className="mb-5 md:mb-0">
+          <IssueStatistics />
+          <IssueBarChart />
+        </div>
+        {/* <LatestIssues /> */}
+      </Grid>
+    </div>
   );
 };
 
