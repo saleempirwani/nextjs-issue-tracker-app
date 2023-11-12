@@ -39,7 +39,7 @@ const IssueBarChart = ({
   ];
 
   return (
-    <div className="border p-5 rounded-md">
+    <div className="border-2 p-5 rounded-md">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />

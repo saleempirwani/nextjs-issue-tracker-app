@@ -12,12 +12,12 @@ const LatestIssues = () => {
   };
 
   return (
-    <div className="p-5 border rounded-md w-full">
+    <div className="p-3 border-2 rounded-md w-full">
       <Heading as="h3" mb="5">
         Latest Issues
       </Heading>
 
-      <div className="">
+      <div className="p-2">
         {LATEST_ISSUES.map((latestIssue, index) => {
           const [color, status] = badge(latestIssue.status as Status);
           return (

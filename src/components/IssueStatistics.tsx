@@ -2,7 +2,7 @@ import { Heading, Text } from "@radix-ui/themes";
 
 const IssueStatistics = () => {
   const renderStats = (label: string, count: number) => (
-    <div className="flex flex-col md:flex-1 w-full p-3 border rounded-md">
+    <div className="flex flex-col md:flex-1 w-full p-3 border-2 rounded-md">
       <Text as="p" className="mb-2">
         {label} Issues
       </Text>
