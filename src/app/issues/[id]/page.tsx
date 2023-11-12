@@ -24,7 +24,7 @@ const IssuePage = () => {
   const renderDelete = () => (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button color="red" className="cursor-pointer">
+        <Button color="red" className="cursor-pointer flex-1 md:flex-auto">
           <FaTrash />
           Delete Issue
         </Button>
@@ -52,15 +52,17 @@ const IssuePage = () => {
   );
 
   return (
-    <Flex className="p-5" gap="9">
+    <div className="flex flex-col-reverse md:flex-row gap-9 p-5">
       <div className="flex-[0.8]">
         <Heading as="h2" className="mb-2 md:text-3xl">
           {issue.title}
         </Heading>
+
         <div className="flex items-center gap-x-5 mb-5">
           <IssueBadge status={issue.status as Status} />
           <Text as="p">{new Date(issue.created_at).toDateString()}</Text>
         </div>
+
         <div className="p-5 border-2 rounded-md">
           <ScrollArea
             type="scroll"
@@ -73,15 +75,22 @@ const IssuePage = () => {
       </div>
       <div className="flex-[0.2] flex flex-col gap-y-5">
         <SelectMenu data={ASSGINEES} defaultValue="unassigned" />
-        <div className="flex flex-col gap-y-2">
-          <Button color="green" className="cursor-pointer">
-            <FaPenToSquare />
-            <Link href={`/issues/edit/${id}`}>Edit Issue</Link>
-          </Button>
+
+        <div className="flex md:flex-col gap-2">
+          <Link
+            href={`/issues/edit/${id}`}
+            className="flex flex-1 md:flex-auto"
+          >
+            <Button color="green" className="cursor-pointer flex-1">
+              <FaPenToSquare />
+              Edit Issue
+            </Button>
+          </Link>
+
           {renderDelete()}
         </div>
       </div>
-    </Flex>
+    </div>
   );
 };
 
