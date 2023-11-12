@@ -17,7 +17,7 @@ const LatestIssues = () => {
         Latest Issues
       </Heading>
 
-      <div className="md:max-h-[65vh] md:overflow-y-scroll">
+      <div className="">
         {LATEST_ISSUES.map((latestIssue, index) => {
           const [color, status] = badge(latestIssue.status as Status);
           return (
