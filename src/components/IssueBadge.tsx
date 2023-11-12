@@ -7,7 +7,7 @@ interface IIssueBadgeProps {
 }
 
 const IssueBadge = ({ status }: IIssueBadgeProps) => {
-  return <Badge color={BADGE[status][0] as any}>BADGE[status][1]</Badge>;
+  return <Badge color={BADGE[status][0] as any}>{BADGE[status][1]}</Badge>;
 };
 
 export default IssueBadge;

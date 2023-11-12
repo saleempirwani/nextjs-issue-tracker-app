@@ -1,9 +1,11 @@
 import { ISSUES } from "@/data/mock";
 import { Table } from "@radix-ui/themes";
+import IssueBadge from "./IssueBadge";
+import { Status } from "@/types";
 
 const IssuesTable = () => {
   return (
-    <Table.Root variant="surface">
+    <Table.Root variant="surface" className="border-gray-300">
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
@@ -16,7 +18,9 @@ const IssuesTable = () => {
         {ISSUES.map((issue, index) => (
           <Table.Row key={index}>
             <Table.RowHeaderCell>{issue.title}</Table.RowHeaderCell>
-            <Table.Cell>{issue.status}</Table.Cell>
+            <Table.Cell>
+              <IssueBadge status={issue.status as Status} />
+            </Table.Cell>
             <Table.Cell>{new Date(issue.created_at).toDateString()}</Table.Cell>
           </Table.Row>
         ))}
