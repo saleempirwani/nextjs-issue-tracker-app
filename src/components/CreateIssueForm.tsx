@@ -19,7 +19,8 @@ const CreateIssueForm = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    watch,
+    formState: { errors, touchedFields },
   } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema),
   });
@@ -58,7 +59,7 @@ const CreateIssueForm = () => {
               />
             </Tabs.Content>
             <Tabs.Content value="preview">
-              <MarkdownPreview className="h-[50vh]" text="**Hello**" />
+              <MarkdownPreview className="h-[50vh]" text={watch("desc")} />
             </Tabs.Content>
           </Box>
         </Tabs.Root>

@@ -1,5 +1,5 @@
 import { ScrollArea } from "@radix-ui/themes";
-import { marked } from "marked";
+import ReactMarkdown from "react-markdown";
 
 interface IMarkdownPreviewProps {
   className: string;
@@ -10,7 +10,7 @@ const MarkdownPreview = ({ className, text }: IMarkdownPreviewProps) => {
   return (
     <div className="p-3 border-2 rounded-md">
       <ScrollArea type="scroll" scrollbars="vertical" className={className}>
-        <div dangerouslySetInnerHTML={{ __html: marked(text) }} />
+        <ReactMarkdown>{text}</ReactMarkdown>
       </ScrollArea>
     </div>
   );
