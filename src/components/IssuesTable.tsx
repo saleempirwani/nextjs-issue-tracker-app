@@ -3,12 +3,11 @@
 import { ISSUES } from "@/data/mock";
 import { Table } from "@radix-ui/themes";
 import IssueBadge from "./IssueBadge";
-import { Status } from "@/types";
+import { Order, Status } from "@/types";
 
 import { BsArrowUp, BsArrowDown } from "react-icons/bs";
 import { useState } from "react";
-
-type Order = "asc" | "desc";
+import Link from "next/link";
 
 const IssuesTable = () => {
   const [order, setOrder] = useState<Order>("desc");
@@ -18,7 +17,7 @@ const IssuesTable = () => {
   };
 
   return (
-    <Table.Root variant="surface" className="border-gray-300 mb-5">
+    <Table.Root variant="surface" className="border-gray-300 mb-5 ">
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>
@@ -36,8 +35,13 @@ const IssuesTable = () => {
 
       <Table.Body>
         {ISSUES.map((issue, index) => (
-          <Table.Row key={index}>
-            <Table.RowHeaderCell>{issue.title}</Table.RowHeaderCell>
+          <Table.Row
+            key={index}
+            className="hover:bg-gray-100 transition-colors"
+          >
+            <Table.RowHeaderCell className="cursor-pointer">
+              <Link href={`/issues/${index}`}>{issue.title}</Link>
+            </Table.RowHeaderCell>
             <Table.Cell>
               <IssueBadge status={issue.status as Status} />
             </Table.Cell>
