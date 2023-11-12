@@ -1,16 +1,7 @@
-"use client";
-
-import { Button } from "@radix-ui/themes";
-import Link from "next/link";
+import IssuesView from "@/views/IssuesView";
 
 const IssuesPage = () => {
-  return (
-    <div className="p-5">
-      <Button>
-        <Link href="/issues/new">New Issue</Link>
-      </Button>
-    </div>
-  );
+  return <IssuesView />;
 };
 
 export default IssuesPage;
