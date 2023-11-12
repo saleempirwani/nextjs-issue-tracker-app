@@ -4,7 +4,6 @@ import SelectMenu from "@/components/SelectMenu";
 import { STATUS_SELECT_MENU } from "@/data/appData";
 import { Button } from "@radix-ui/themes";
 import Link from "next/link";
-import React from "react";
 
 const IssuesView = () => {
   return (
