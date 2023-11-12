@@ -50,7 +50,7 @@ const CreateIssueForm = () => {
         <ErrorMessage message={errors.desc?.message} />
 
         <Button className="cursor-pointer" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting" : "Submit"}
+          {isSubmitting ? "Creating" : "Create"} New Issue
           {isSubmitting && <Spinner />}
         </Button>
       </form>
