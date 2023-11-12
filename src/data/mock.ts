@@ -1,8 +1,3 @@
-export const NAV_LINKS = [
-  { label: "Dashboard", link: "/" },
-  { label: "Issues", link: "/issues" },
-];
-
 export const LATEST_ISSUES = [
   {
     title: "This is issue1",

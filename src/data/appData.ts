@@ -1,3 +1,8 @@
+export const NAV_LINKS = [
+  { label: "Dashboard", link: "/" },
+  { label: "Issues", link: "/issues" },
+];
+
 export const STATUS_SELECT_MENU = [
   {
     label: "Open",

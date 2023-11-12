@@ -1,6 +1,6 @@
 "use client";
 
-import { NAV_LINKS } from "@/data/mock";
+import { NAV_LINKS } from "@/data/appData";
 import { Avatar, Popover, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
