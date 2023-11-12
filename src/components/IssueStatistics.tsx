@@ -13,7 +13,7 @@ const IssueStatistics = () => {
   );
 
   return (
-    <div className="flex flex-wrap gap-5 mb-10">
+    <div className="flex flex-wrap gap-5 mb-5">
       {renderStats("Open", 8)}
       {renderStats("In-progress", 8)}
       {renderStats("Closed", 8)}

@@ -1,14 +1,15 @@
 "use client";
 
-import SimpleMDE from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
-import { Button, TextField } from "@radix-ui/themes";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "@/schema";
-import { z } from "zod";
 import ErrorMessage from "@/components/ErrorMessage";
+import { createIssueSchema } from "@/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Box, Button, Tabs, TextField } from "@radix-ui/themes";
+import "easymde/dist/easymde.min.css";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import SimpleMDE from "react-simplemde-editor";
+import { z } from "zod";
+import MarkdownPreview from "./MarkdownPreview";
 import Spinner from "./Spinner";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
@@ -40,19 +41,36 @@ const CreateIssueForm = () => {
         </TextField.Root>
         <ErrorMessage message={errors.title?.message} />
 
-        <Controller
-          name="desc"
-          control={control}
-          render={({ field }) => (
-            <SimpleMDE placeholder="Description" {...field} />
-          )}
-        />
+        <Tabs.Root defaultValue="editor">
+          <Tabs.List>
+            <Tabs.Trigger value="editor">Editor</Tabs.Trigger>
+            <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
+          </Tabs.List>
+
+          <Box pt="2">
+            <Tabs.Content value="editor">
+              <Controller
+                name="desc"
+                control={control}
+                render={({ field }) => (
+                  <SimpleMDE placeholder="Description" {...field} />
+                )}
+              />
+            </Tabs.Content>
+            <Tabs.Content value="preview">
+              <MarkdownPreview className="h-[50vh]" text="**Hello**" />
+            </Tabs.Content>
+          </Box>
+        </Tabs.Root>
+
         <ErrorMessage message={errors.desc?.message} />
 
-        <Button className="cursor-pointer" disabled={isSubmitting}>
-          {isSubmitting ? "Creating" : "Create"} New Issue
-          {isSubmitting && <Spinner />}
-        </Button>
+        <div className="flex justify-end">
+          <Button className="cursor-pointer text-right" disabled={isSubmitting}>
+            {isSubmitting ? "Creating" : "Create"} New Issue
+            {isSubmitting && <Spinner />}
+          </Button>
+        </div>
       </form>
     </div>
   );

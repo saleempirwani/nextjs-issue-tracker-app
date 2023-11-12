@@ -12,7 +12,7 @@ const LatestIssues = () => {
         Latest Issues
       </Heading>
 
-      <ScrollArea type="always" scrollbars="vertical" className="max-h-[50vh]">
+      <ScrollArea type="always" scrollbars="vertical" className="max-h-[60vh]">
         <div className="p-2 pr-5">
           {LATEST_ISSUES.map((latestIssue, index) => {
             return (
