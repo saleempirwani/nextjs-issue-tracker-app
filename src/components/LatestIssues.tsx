@@ -2,7 +2,7 @@
 
 import { LATEST_ISSUES } from "@/data/mock";
 import { Status } from "@/types";
-import { Heading, Separator, Text } from "@radix-ui/themes";
+import { Heading, ScrollArea, Separator, Text } from "@radix-ui/themes";
 import IssueBadge from "./IssueBadge";
 
 const LatestIssues = () => {
@@ -12,19 +12,21 @@ const LatestIssues = () => {
         Latest Issues
       </Heading>
 
-      <div className="p-2">
-        {LATEST_ISSUES.map((latestIssue, index) => {
-          return (
-            <div key={index} className="space-y-3">
-              {index !== 0 && (
-                <Separator size="4" orientation="horizontal" my="4" />
-              )}
-              <Text as="p">{latestIssue.title}</Text>
-              <IssueBadge status={latestIssue.status as Status} />
-            </div>
-          );
-        })}
-      </div>
+      <ScrollArea type="always" scrollbars="vertical" className="max-h-[50vh]">
+        <div className="p-2 pr-5">
+          {LATEST_ISSUES.map((latestIssue, index) => {
+            return (
+              <div key={index} className="space-y-3">
+                {index !== 0 && (
+                  <Separator size="4" orientation="horizontal" my="4" />
+                )}
+                <Text as="p">{latestIssue.title}</Text>
+                <IssueBadge status={latestIssue.status as Status} />
+              </div>
+            );
+          })}
+        </div>
+      </ScrollArea>
     </div>
   );
 };
