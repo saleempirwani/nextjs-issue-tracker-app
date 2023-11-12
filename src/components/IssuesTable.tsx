@@ -1,14 +1,34 @@
+"use client";
+
 import { ISSUES } from "@/data/mock";
 import { Table } from "@radix-ui/themes";
 import IssueBadge from "./IssueBadge";
 import { Status } from "@/types";
 
+import { BsArrowUp, BsArrowDown } from "react-icons/bs";
+import { useState } from "react";
+
+type Order = "asc" | "desc";
+
 const IssuesTable = () => {
+  const [order, setOrder] = useState<Order>("desc");
+
+  const onOrderChange = () => {
+    setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
   return (
     <Table.Root variant="surface" className="border-gray-300 mb-5">
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>
+            <div className="flex items-center gap-x-1">
+              Issue
+              <div className="cursor-pointer" onClick={onOrderChange}>
+                {order === "asc" ? <BsArrowDown /> : <BsArrowUp />}
+              </div>
+            </div>
+          </Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell>Created</Table.ColumnHeaderCell>
         </Table.Row>
