@@ -5,6 +5,10 @@ export const NAV_LINKS = [
 
 export const STATUS_SELECT_MENU = [
   {
+    label: "All",
+    value: "all",
+  },
+  {
     label: "Open",
     value: "open",
   },
