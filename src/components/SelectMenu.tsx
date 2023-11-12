@@ -1,15 +1,19 @@
 "use client";
 
-import { STATUS_SELECT_MENU } from "@/data/appData";
 import { Select } from "@radix-ui/themes";
 
-const SelectMenu = () => {
+interface ISelectMenuProps {
+  data: { label: string; value: string }[];
+  defaultValue: string;
+}
+
+const SelectMenu = ({ data, defaultValue }: ISelectMenuProps) => {
   return (
-    <Select.Root defaultValue="all">
+    <Select.Root defaultValue={defaultValue}>
       <Select.Trigger />
       <Select.Content>
         <Select.Group>
-          {STATUS_SELECT_MENU.map((item, index) => (
+          {data.map((item, index) => (
             <Select.Item key={index} value={item.value}>
               {item.label}
             </Select.Item>

@@ -2,7 +2,7 @@
 
 import IssueBadge from "@/components/IssueBadge";
 import SelectMenu from "@/components/SelectMenu";
-import { ISSUES } from "@/data/mock";
+import { ASSGINEES, ISSUES } from "@/data/mock";
 import { Status } from "@/types";
 import {
   AlertDialog,
@@ -72,7 +72,7 @@ const IssuePage = () => {
         </div>
       </div>
       <div className="flex-[0.2] flex flex-col gap-y-5">
-        <SelectMenu />
+        <SelectMenu data={ASSGINEES} defaultValue="unassigned" />
         <div className="flex flex-col gap-y-2">
           <Button color="green" className="cursor-pointer">
             <FaPenToSquare />
