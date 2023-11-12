@@ -17,3 +17,9 @@ export const STATUS_SELECT_MENU = [
     value: "closed",
   },
 ];
+
+export const BADGE = {
+  OPEN: ["red", "Open"],
+  IN_PROGRESS: ["orange", "In progress"],
+  CLOSED: ["green", "Closed"],
+};
