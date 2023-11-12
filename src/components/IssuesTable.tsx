@@ -5,7 +5,7 @@ import { Status } from "@/types";
 
 const IssuesTable = () => {
   return (
-    <Table.Root variant="surface" className="border-gray-300">
+    <Table.Root variant="surface" className="border-gray-300 mb-5">
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>

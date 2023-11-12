@@ -1,4 +1,5 @@
 import IssuesTable from "@/components/IssuesTable";
+import Pagination from "@/components/Pagination";
 import SelectMenu from "@/components/SelectMenu";
 import { Button } from "@radix-ui/themes";
 import Link from "next/link";
@@ -13,8 +14,8 @@ const IssuesView = () => {
           <Link href="/issues/new">New Issue</Link>
         </Button>
       </div>
-
       <IssuesTable />
+      <Pagination />
     </div>
   );
 };
