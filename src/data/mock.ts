@@ -70,4 +70,51 @@ export const ISSUES = [
     status: "IN_PROGRESS",
     created_at: "2023-11-12T08:06:00.572Z",
   },
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "OPEN",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "CLOSED",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "IN_PROGRESS",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "OPEN",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "CLOSED",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "IN_PROGRESS",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
+
+  {
+    title: "This is issue1",
+    desc: "This is issue desc",
+    status: "CLOSED",
+    created_at: "2023-11-12T08:06:00.572Z",
+  },
 ];
