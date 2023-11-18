@@ -1,18 +1,26 @@
 import IssueBarChart from "@/components/IssueBarChart";
 import IssueStatistics from "@/components/IssueStatistics";
 import LatestIssues from "@/components/LatestIssues";
+import { Flex } from "@radix-ui/themes";
 
 const DashboardView = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-9 p-5">
-      <div className="flex flex-1 flex-col mb-5 md:mb-0">
+    <Flex
+      direction={{
+        initial: "column",
+        md: "row",
+      }}
+      gap="5"
+      className="p-5"
+    >
+      <div className="flex-1 mb-5 md:mb-0">
         <IssueStatistics />
         <IssueBarChart />
       </div>
       <div className="flex flex-1">
         <LatestIssues />
       </div>
-    </div>
+    </Flex>
   );
 };
 
