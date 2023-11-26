@@ -28,7 +28,7 @@ const IssueAction = () => {
       <SelectMenu
         data={STATUS_SELECT_MENU}
         onValueChange={onValueChange}
-        defaultValue={searchParams.get("status") || ""}
+        defaultValue={searchParams.get("status") || STATUS_SELECT_MENU[0].value}
       />
       <Button>
         <Link href="/issues/new">New Issue</Link>
