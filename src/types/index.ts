@@ -6,5 +6,17 @@ export interface IIssue {
   title: string;
   desc: string;
   status: Status;
-  created_at: string;
+  createdAt: string;
+}
+
+export interface IssueQuery {
+  orderBy: keyof IIssue;
+  status: Status;
+  page: string;
+}
+
+export interface ITableColumn {
+  label: string;
+  value: keyof IIssue;
+  className?: string;
 }

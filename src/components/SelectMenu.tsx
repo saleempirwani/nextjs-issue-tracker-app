@@ -5,20 +5,23 @@ import { Select } from "@radix-ui/themes";
 interface ISelectMenuProps {
   data: { label: string; value: string }[];
   defaultValue: string;
+  onValueChange: (value: string) => void;
 }
 
-const SelectMenu = ({ data, defaultValue }: ISelectMenuProps) => {
+const SelectMenu = ({
+  data,
+  defaultValue,
+  onValueChange,
+}: ISelectMenuProps) => {
   return (
-    <Select.Root defaultValue={defaultValue}>
+    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
       <Select.Trigger />
       <Select.Content>
-        <Select.Group>
-          {data.map((item, index) => (
-            <Select.Item key={index} value={item.value}>
-              {item.label}
-            </Select.Item>
-          ))}
-        </Select.Group>
+        {data.map((item, index) => (
+          <Select.Item key={index} value={item.value}>
+            {item.label}
+          </Select.Item>
+        ))}
       </Select.Content>
     </Select.Root>
   );
