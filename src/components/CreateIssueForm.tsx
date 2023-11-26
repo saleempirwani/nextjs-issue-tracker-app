@@ -42,7 +42,7 @@ const CreateIssueForm = () => {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) return router.replace("/issues");
+      if (response.ok) return router.push("/issues");
     } catch (error) {
       setError("Unexpected error occurred");
       console.log("ERR [error] =====> ", error);
