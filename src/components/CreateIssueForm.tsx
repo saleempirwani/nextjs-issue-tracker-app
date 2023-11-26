@@ -5,6 +5,7 @@ import { createIssueSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Tabs, TextField } from "@radix-ui/themes";
 import "easymde/dist/easymde.min.css";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
@@ -20,16 +21,34 @@ const CreateIssueForm = () => {
     control,
     handleSubmit,
     watch,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema),
   });
 
+  const { description } = watch();
+
+  const router = useRouter();
+
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmitIssue = (data: any) => {
-    console.log(data);
+  const onSubmitIssue = async (data: any) => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/issues", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) return router.replace("/issues");
+    } catch (error) {
+      setError("Unexpected error occurred");
+      console.log("ERR [error] =====> ", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -51,7 +70,7 @@ const CreateIssueForm = () => {
           <Box pt="2">
             <Tabs.Content value="editor">
               <Controller
-                name="desc"
+                name="description"
                 control={control}
                 render={({ field }) => (
                   <SimpleMDE placeholder="Description" {...field} />
@@ -59,12 +78,12 @@ const CreateIssueForm = () => {
               />
             </Tabs.Content>
             <Tabs.Content value="preview">
-              <MarkdownPreview className="h-[50vh]" text={watch("desc")} />
+              <MarkdownPreview className="h-[50vh]" text={description} />
             </Tabs.Content>
           </Box>
         </Tabs.Root>
 
-        <ErrorMessage message={errors.desc?.message} />
+        <ErrorMessage message={errors.description?.message} />
 
         <div className="flex justify-end">
           <Button className="cursor-pointer text-right" disabled={isSubmitting}>
