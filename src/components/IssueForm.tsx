@@ -12,10 +12,15 @@ import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 import MarkdownPreview from "./MarkdownPreview";
 import Spinner from "./Spinner";
+import { Issue } from "@prisma/client";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
-const CreateIssueForm = () => {
+interface IProps {
+  issue?: Issue;
+}
+
+const IssueForm = ({ issue }: IProps) => {
   const {
     register,
     control,
@@ -37,10 +42,19 @@ const CreateIssueForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/issues", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      let response: Response;
+
+      if (issue) {
+        response = await fetch(`/api/issues/${issue.id}`, {
+          method: "PATCH",
+          body: JSON.stringify(data),
+        });
+      } else {
+        response = await fetch("/api/issues", {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+      }
 
       if (response.ok) return router.push("/issues");
     } catch (error) {
@@ -57,7 +71,11 @@ const CreateIssueForm = () => {
 
       <form className="space-y-5" onSubmit={handleSubmit(onSubmitIssue)}>
         <TextField.Root className="py-2">
-          <TextField.Input placeholder="Title" {...register("title")} />
+          <TextField.Input
+            placeholder="Title"
+            {...register("title")}
+            defaultValue={issue?.title}
+          />
         </TextField.Root>
         <ErrorMessage message={errors.title?.message} />
 
@@ -72,13 +90,17 @@ const CreateIssueForm = () => {
               <Controller
                 name="description"
                 control={control}
+                defaultValue={issue?.description}
                 render={({ field }) => (
                   <SimpleMDE placeholder="Description" {...field} />
                 )}
               />
             </Tabs.Content>
             <Tabs.Content value="preview">
-              <MarkdownPreview className="h-[50vh]" text={description} />
+              <MarkdownPreview
+                className="h-[50vh]"
+                text={description || issue?.description!}
+              />
             </Tabs.Content>
           </Box>
         </Tabs.Root>
@@ -87,7 +109,10 @@ const CreateIssueForm = () => {
 
         <div className="flex justify-end">
           <Button className="cursor-pointer text-right" disabled={isSubmitting}>
-            {isSubmitting ? "Creating" : "Create"} New Issue
+            {isSubmitting
+              ? `${issue ? "Updating" : "Creating"}`
+              : `${issue ? "Update" : "Updating"}`}{" "}
+            Issue
             {isSubmitting && <Spinner />}
           </Button>
         </div>
@@ -96,4 +121,4 @@ const CreateIssueForm = () => {
   );
 };
 
-export default CreateIssueForm;
+export default IssueForm;

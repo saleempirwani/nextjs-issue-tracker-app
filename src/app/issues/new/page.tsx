@@ -1,7 +1,7 @@
-import CreateIssueForm from "@/components/CreateIssueForm";
+import IssueForm from "@/components/IssueForm";
 
 const NewIssuePage = () => {
-  return <CreateIssueForm />;
+  return <IssueForm />;
 };
 
 export default NewIssuePage;
