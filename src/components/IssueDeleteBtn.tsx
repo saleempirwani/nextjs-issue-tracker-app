@@ -1,9 +1,42 @@
 "use client";
 
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import Spinner from "./Spinner";
 
-const IssueDeleteBtn = () => {
+interface IssueDeleteBtn {
+  id: string;
+}
+
+const IssueDeleteBtn = ({ id }: IssueDeleteBtn) => {
+  const router = useRouter();
+
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmitIssue = async () => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`/api/issues/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        router.push("/issues");
+        router.refresh();
+        return;
+      }
+    } catch (error) {
+      setError("Unexpected error occurred");
+      console.log("ERR [error] =====> ", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="flex flex-1 md:flex-auto">
       <AlertDialog.Root>
@@ -26,7 +59,14 @@ const IssueDeleteBtn = () => {
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button variant="solid" color="red" className="cursor-pointer">
+              <Button
+                variant="solid"
+                color="red"
+                className="cursor-pointer"
+                onClick={onSubmitIssue}
+                disabled={isSubmitting}
+              >
+                {isSubmitting && <Spinner />}
                 Yes
               </Button>
             </AlertDialog.Action>

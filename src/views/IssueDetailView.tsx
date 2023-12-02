@@ -4,26 +4,32 @@ import IssueDeleteBtn from "@/components/IssueDeleteBtn";
 import IssueDetails from "@/components/IssueDetails";
 import IssueEditBtn from "@/components/IssueEditBtn";
 import SelectMenu from "@/components/SelectMenu";
-import { ASSGINEES, ISSUES } from "@/data/mock";
-import { useParams } from "next/navigation";
+import { ASSGINEES } from "@/data/mock";
+import { Issue } from "@prisma/client";
+import { Box, Flex, Grid } from "@radix-ui/themes";
 
-const IssueDetailView = () => {
-  const params = useParams();
+interface Props {
+  issue: Issue;
+}
 
-  const issue = ISSUES[Number(params.id)];
-
+const IssueDetailView = ({ issue }: Props) => {
   return (
-    <div className="flex flex-col-reverse md:flex-row gap-9 p-5">
-      <IssueDetails issue={issue} />
-
-      <div className="flex flex-1 flex-col gap-5">
-        <SelectMenu data={ASSGINEES} defaultValue="unassigned" />
-        <div className="flex flex-col gap-2">
-          <IssueEditBtn id={params.id as string} />
-          <IssueDeleteBtn />
-        </div>
-      </div>
-    </div>
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
+      <Box style={{ gridColumn: "span 4 / span 4" }}>
+        <IssueDetails issue={issue} />
+      </Box>
+      <Box>
+        <Flex direction="column" gap="4">
+          <SelectMenu
+            data={ASSGINEES}
+            defaultValue="unassigned"
+            onValueChange={() => {}}
+          />
+          <IssueEditBtn id={issue.id} />
+          <IssueDeleteBtn id={issue.id} />
+        </Flex>
+      </Box>
+    </Grid>
   );
 };
 
