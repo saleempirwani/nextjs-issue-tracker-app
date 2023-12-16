@@ -56,7 +56,11 @@ const IssueForm = ({ issue }: IProps) => {
         });
       }
 
-      if (response.ok) return router.push("/issues");
+      if (response.ok) {
+        router.push("/issues");
+        router.refresh();
+        return;
+      }
     } catch (error) {
       setError("Unexpected error occurred");
       console.log("ERR [error] =====> ", error);
