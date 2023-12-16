@@ -115,7 +115,7 @@ const IssueForm = ({ issue }: IProps) => {
           <Button className="cursor-pointer text-right" disabled={isSubmitting}>
             {isSubmitting
               ? `${issue ? "Updating" : "Creating"}`
-              : `${issue ? "Update" : "Updating"}`}{" "}
+              : `${issue ? "Update" : "Create"}`}{" "}
             Issue
             {isSubmitting && <Spinner />}
           </Button>
