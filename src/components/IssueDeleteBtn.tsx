@@ -41,9 +41,14 @@ const IssueDeleteBtn = ({ id }: IssueDeleteBtn) => {
     <div className="flex flex-1 md:flex-auto">
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" className="cursor-pointer flex-1 md:flex-auto">
+          <Button
+            color="red"
+            className="cursor-pointer flex-1 md:flex-auto"
+            disabled={isSubmitting}
+          >
             <FaTrash />
             Delete Issue
+            {isSubmitting && <Spinner />}
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Content style={{ maxWidth: 450 }}>
@@ -64,9 +69,7 @@ const IssueDeleteBtn = ({ id }: IssueDeleteBtn) => {
                 color="red"
                 className="cursor-pointer"
                 onClick={onSubmitIssue}
-                disabled={isSubmitting}
               >
-                {isSubmitting && <Spinner />}
                 Yes
               </Button>
             </AlertDialog.Action>
