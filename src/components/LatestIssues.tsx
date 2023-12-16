@@ -1,10 +1,7 @@
-// "use client";
-
-import { LATEST_ISSUES } from "@/data/mock";
+import prisma from "@/prisma/client";
 import { Status } from "@/types";
 import { Heading, ScrollArea, Separator, Text } from "@radix-ui/themes";
 import IssueBadge from "./IssueBadge";
-import prisma from "@/prisma/client";
 
 const LatestIssues = async () => {
   const latestIssues = await prisma.issue.findMany({
