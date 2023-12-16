@@ -3,7 +3,7 @@ import { Box, Card, Flex } from "@radix-ui/themes";
 
 const LoadingIssueDetailPage = () => {
   return (
-    <Box className="max-w-xl">
+    <Box className="max-w-xl p-5">
       <Skeleton />
       <Flex className="space-x-3" my="2">
         <Skeleton width="5rem" />
