@@ -6,16 +6,21 @@ interface ISelectMenuProps {
   data: { label: string; value: string }[];
   defaultValue: string;
   onValueChange: (value: string) => void;
-  disabled?: boolean;
+  value: string;
 }
 
 const SelectMenu = ({
   data,
   defaultValue,
   onValueChange,
+  value,
 }: ISelectMenuProps) => {
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
+    <Select.Root
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+      value={value}
+    >
       <Select.Trigger />
       <Select.Content>
         {data.map((item, index) => (

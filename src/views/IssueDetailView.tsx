@@ -17,14 +17,16 @@ interface Props {
 
 const IssueDetailView = ({ issue }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState("");
 
-  const onValueChange = async (status: string) => {
+  const onValueChange = async (value: string) => {
     setIsSubmitting(true);
+    setStatus(value);
 
     try {
       let response: Response = await fetch(`/api/issues/status/${issue.id}`, {
         method: "PATCH",
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status: value }),
       });
 
       if (response.ok) {
@@ -53,8 +55,9 @@ const IssueDetailView = ({ issue }: Props) => {
             <Spinner />
           ) : (
             <SelectMenu
-              data={STATUS_SELECT_MENU}
+              data={STATUS_SELECT_MENU.slice(1, STATUS_SELECT_MENU.length)}
               onValueChange={onValueChange}
+              value={status}
               defaultValue={issue.status}
             />
           )}
