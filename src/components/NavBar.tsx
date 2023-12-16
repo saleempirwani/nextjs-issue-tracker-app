@@ -48,7 +48,9 @@ const NavBar = () => {
                 pathname === navLink.link && "text-zinc-900"
               )}
             >
-              <Link href={navLink.link}>{navLink.label}</Link>
+              <Link href={navLink.link} replace>
+                {navLink.label}
+              </Link>
             </li>
           ))}
         </ul>
