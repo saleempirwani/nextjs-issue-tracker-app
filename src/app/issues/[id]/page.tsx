@@ -1,6 +1,5 @@
 import prisma from "@/prisma/client";
 import IssueDetailView from "@/views/IssueDetailView";
-import { Issue } from "@prisma/client";
 import { notFound } from "next/navigation";
 
 interface IProps {
@@ -14,7 +13,7 @@ const IssueDetailPage = async ({ params }: IProps) => {
 
   if (!issue) return notFound();
 
-  return <IssueDetailView issue={issue as Issue} />;
+  return <IssueDetailView issue={issue} />;
 };
 
 export default IssueDetailPage;

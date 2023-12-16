@@ -6,6 +6,7 @@ interface ISelectMenuProps {
   data: { label: string; value: string }[];
   defaultValue: string;
   onValueChange: (value: string) => void;
+  disabled?: boolean;
 }
 
 const SelectMenu = ({
