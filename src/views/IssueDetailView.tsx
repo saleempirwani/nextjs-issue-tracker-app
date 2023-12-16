@@ -14,7 +14,7 @@ interface Props {
 
 const IssueDetailView = ({ issue }: Props) => {
   return (
-    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5" className="p-5">
       <Box style={{ gridColumn: "span 4 / span 4" }}>
         <IssueDetails issue={issue} />
       </Box>
