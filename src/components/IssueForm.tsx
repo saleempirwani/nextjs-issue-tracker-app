@@ -17,10 +17,10 @@ import { Issue } from "@prisma/client";
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 interface IProps {
-  issue?: Issue;
+  issue?: Issue | null;
 }
 
-const IssueForm = ({ issue }: IProps) => {
+const IssueForm = ({ issue = null }: IProps) => {
   const {
     register,
     control,

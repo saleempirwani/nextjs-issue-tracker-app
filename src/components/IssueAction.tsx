@@ -26,6 +26,7 @@ const IssueAction = () => {
   return (
     <div className="flex items-center justify-between mb-5">
       <SelectMenu
+        value=""
         data={STATUS_SELECT_MENU}
         onValueChange={onValueChange}
         defaultValue={searchParams.get("status") || STATUS_SELECT_MENU[0].value}
