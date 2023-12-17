@@ -17,7 +17,7 @@ interface Props {
 
 const IssueDetailView = ({ issue }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState(issue.status as string);
 
   const onValueChange = async (value: string) => {
     setIsSubmitting(true);
@@ -58,7 +58,7 @@ const IssueDetailView = ({ issue }: Props) => {
               data={STATUS_SELECT_MENU.slice(1, STATUS_SELECT_MENU.length)}
               onValueChange={onValueChange}
               value={status}
-              defaultValue={issue.status}
+              defaultValue=""
             />
           )}
           <IssueEditBtn id={issue.id} />
