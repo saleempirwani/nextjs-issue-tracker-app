@@ -26,10 +26,10 @@ const IssueAction = () => {
   return (
     <div className="flex items-center justify-between mb-5">
       <SelectMenu
-        value=""
+        value={searchParams.get("status") || STATUS_SELECT_MENU[0].value}
         data={STATUS_SELECT_MENU}
         onValueChange={onValueChange}
-        defaultValue={searchParams.get("status") || STATUS_SELECT_MENU[0].value}
+        defaultValue=""
       />
       <Button>
         <Link href="/issues/new">New Issue</Link>

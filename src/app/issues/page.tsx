@@ -35,8 +35,6 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const issueCount = await prisma.issue.count({ where });
 
-  console.log(issueCount);
-
   return (
     <div className="p-5">
       <IssueAction />
